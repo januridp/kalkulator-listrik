@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "stable"
+
+before_script:
+  - npm install -g @angular/cli
+  - ng version
+
+script:
+  - ng build --prod
+  - cd ./dist/kalkulator-listrik/ && ls -la
+
+deploy:
+  provider: surge
+  skip_cleanup: true
+  project: ./dist/kalkulator-listrik/
+  domain: kalkulator-listrik.surge.sh 
